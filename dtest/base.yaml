@@ -1,0 +1,49 @@
+version: 8
+name: Dokido
+descr: Оформление продаж
+language: Russian 
+langnative: Русский
+tables:
+  - 
+    name: serv 
+    label: Настройки 
+    descr: Настройки    
+    fields:
+      - {name: id, type: id, label:'ИД', descr: Уникальный номер}
+      - {name: version,  type: int,             label: ИД,            descr: Номер версии }
+      - {name: basename, type: char, size: 255, label: Имя базы,            descr: Имя базы }
+      - {name: f_login,  type: int,  size: 255, label: Вход по паролю }  
+  - 
+    name: clients
+    label: Покупатели 
+    descr: Покупатели
+    fields:      
+      - {name: id, type: id, label:'ИД', descr: Уникальный номер, disable: 1}
+      - {name: id_kind, type: link, label: Вид, link: customerkind, linkfield: name, req: 1}
+      - {name: name, type: char, size: 255, label: Наименование }      
+      - {name: alias, type: char, size: 100, label: Псевдоним }      
+      - {name: inn, type: char, size: 12, label: ИНН}                
+      - {name: comment, type: char, size: 255, label: Комментарий }           
+  -
+    name: customerkind
+    label: Вид покупателя
+    descr: Вид покупателя
+    fields:            
+      - {name: id, type: id, label:'ИД', descr: Уникальный номер}
+      - {name: name, type: char, size: 255, label: Наименование }            
+  - 
+    name: patterns
+    label: Шаблоны 
+    descr: Шаблоны
+    fields:      
+      - {name: id, type: id, label:'ИД', descr: Уникальный номер, disable: 1}      
+      - {name: name, type: char, size: 255, label: Наименование }      
+      - {name: file, type: file, label: Файл }      
+      #- {name: path, type: char, size: 255, label: Путь к файлу }            
+menu:
+modules:
+  - table: customer
+    filters: 
+    itemmenu:
+    maincard:
+      
